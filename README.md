@@ -1,6 +1,6 @@
-#Rabobank Customer Statement Processor
+#Customer Statement Processor
 
-Rabobank receives monthly deliveries of customer statement records. This information is delivered in two formats, CSV and XML. These records need to be validated.
+Application receives monthly deliveries of customer statement records. This information is delivered in two formats, CSV and XML. These records need to be validated.
 
 ## Getting Started
 
@@ -22,11 +22,11 @@ Generating a jar for the application along with unit test execution
 ```
 mvn package
 ```
-This will generate RaboRecordValidatorApp-1.0-SNAPSHOT jar
+This will generate RecordValidatorApp-1.0-SNAPSHOT jar
 ## Running the application
 
 ```
-java -jar RaboRecordValidatorApp-1.0-SNAPSHOT.jar
+java -jar RecordValidatorApp-1.0-SNAPSHOT.jar
 
 ```
 Collect the report with the
