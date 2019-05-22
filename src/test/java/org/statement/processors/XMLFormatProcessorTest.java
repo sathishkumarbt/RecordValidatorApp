@@ -1,10 +1,18 @@
 package org.statement.processors;
 
-import org.statement.models.xml.XMLRecords;
+import org.junit.jupiter.api.Assertions;
+import org.statement.exception.FileParserException;
+import org.statement.models.MT940;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class XMLFormatProcessorTest {
     private static IFormatProcessor xmlFormatProcessor;
@@ -15,23 +23,43 @@ public class XMLFormatProcessorTest {
     }
 
     @Test
-    void testSuccessfulProcessing(){
-       XMLRecords xmlRecords = (XMLRecords) xmlFormatProcessor.processData("records_test_valid.xml");
-       assertEquals(xmlRecords.getRecord().size(), 10);
+    void testSuccessfullyXMLISParsedAndNumberOfRecordsAreValidated(){
+        URL url = getClass().getClassLoader().getResource("xml/records_test_valid.xml");
+        List<MT940> mt940Records = null;
+        try {
+            mt940Records = xmlFormatProcessor.processData(Paths.get(url.toURI()).toFile().getAbsolutePath());
+        } catch (FileParserException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+       assertEquals(10, mt940Records.size());
     }
 
     @Test
     void testInvalidXMLFileContent(){
-
+        URL url = getClass().getClassLoader().getResource("xml/invalid_xml_file.xml");
+        assertThrows(FileParserException.class, () -> xmlFormatProcessor.processData(Paths.get(url.toURI()).toFile().getAbsolutePath()));
     }
 
     @Test
-    void testInvalidFileExtension(){
-
+    void testInvalidXMLFileExtension(){
+        URL url = getClass().getClassLoader().getResource("xml/Invalid_extension_xml.x");
+        List<MT940> mt940Records = null;
+        try {
+            mt940Records = xmlFormatProcessor.processData(Paths.get(url.toURI()).toFile().getAbsolutePath());
+        } catch (FileParserException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+       assertEquals(10, mt940Records.size());
     }
 
     @Test
-    void testFileNotFoundException(){
+    void testFileNotFoundExceptionForXMLParser(){
+        assertThrows(FileParserException.class, () -> xmlFormatProcessor.processData("xml/unknown.xml"));
+    }
 
+
+    @Test
+    void testNullFileInputToXmlParser(){
+        Assertions.assertThrows(IllegalArgumentException.class , () -> xmlFormatProcessor.processData(null));
     }
 }

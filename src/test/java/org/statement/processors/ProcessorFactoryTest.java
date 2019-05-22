@@ -11,12 +11,9 @@ import org.junit.jupiter.api.Test;
 public class ProcessorFactoryTest {
     private static ProcessorFactory processorFactory;
 
-    static {
-        processorFactory = new ProcessorFactory();
-    }
-
     @BeforeAll
     static void setup(){
+        processorFactory = new ProcessorFactory();
     }
 
     @Test

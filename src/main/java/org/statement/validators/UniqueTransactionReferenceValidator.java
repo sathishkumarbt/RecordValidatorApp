@@ -1,5 +1,6 @@
 package org.statement.validators;
 
+import org.statement.exception.ValidationFailException;
 import org.statement.models.MT940;
 
 import java.util.HashSet;
@@ -10,7 +11,10 @@ import java.util.stream.Collectors;
 public class UniqueTransactionReferenceValidator implements IStatementRecordValidator {
 
     @Override
-    public List<MT940> validate(List<MT940> records) {
+    public List<MT940> validate(List<MT940> records) throws ValidationFailException {
+        if(null == records ){
+            throw new ValidationFailException("Empty records");
+        }
         Set<Integer> referenceSet = new HashSet<>();
         return records.stream().filter(record -> {
             return (!referenceSet.add(record.getTransactionRef()));

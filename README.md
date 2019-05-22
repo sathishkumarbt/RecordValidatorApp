@@ -26,11 +26,24 @@ This will generate RecordValidatorApp-1.0-SNAPSHOT jar
 ## Running the application
 
 ```
-java -jar RecordValidatorApp-1.0-SNAPSHOT.jar
+java -DrecordDir=<record_directory> -jar RecordValidatorApp-1.0-SNAPSHOT.jar
 
 ```
-Collect the report with the
-
+Failed Records are displayed in the console
+for e.g
+# FileName : records.csv # Number of Failed Records :6
+Transaction Reference :112806 Description : Clothes for Richard Dekker
+Transaction Reference :112806 Description : Subscription for Jan Theuß
+Transaction Reference :195694 Description : Clothes for Daniël Theuß
+Transaction Reference :161574 Description : Subscription for Rik Bakker
+Transaction Reference :112806 Description : Clothes for Richard Dekker
+Transaction Reference :112806 Description : Subscription for Jan Theuß
+----------------------------------------------------------------------
+# FileName : records.xml # Number of Failed Records :3
+Transaction Reference :158536 Description : Candy from Jan Bakker
+Transaction Reference :163678 Description : Candy for Jan de Vries
+Transaction Reference :175867 Description : Clothes from Daniël Theuß
+----------------------------------------------------------------------
 
 ## Deployment
 
