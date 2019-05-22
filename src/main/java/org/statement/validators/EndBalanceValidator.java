@@ -13,12 +13,14 @@ public class EndBalanceValidator implements IStatementRecordValidator {
         if(null == records ){
             throw new ValidationFailException("Empty records");
         }
-        final float threashold = .0001f;
-
+        //Based on the precision
+        final float threshHold = .0001f;
+        //compare the floating number based on the range.If difference is more than threshhold then
+        // it is considered as not equal
         List<MT940> endBalanceValidatioFailedList = records.stream().filter(record -> {
             Float sum =  Float.sum(record.getStartBalance(), record.getMutation());
             Float diff = Math.abs(sum - record.getEndBalance() );
-            return (diff > threashold);
+            return (diff > threshHold);
         }).collect(Collectors.toList());
 
         return endBalanceValidatioFailedList;

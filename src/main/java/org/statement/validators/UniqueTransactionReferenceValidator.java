@@ -16,6 +16,7 @@ public class UniqueTransactionReferenceValidator implements IStatementRecordVali
             throw new ValidationFailException("Empty records");
         }
         Set<Integer> referenceSet = new HashSet<>();
+        //Second and consecutive duplicate records are added to the list.
         return records.stream().filter(record -> {
             return (!referenceSet.add(record.getTransactionRef()));
         }).collect(Collectors.toList());
