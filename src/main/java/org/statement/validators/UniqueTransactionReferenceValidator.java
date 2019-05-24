@@ -3,22 +3,21 @@ package org.statement.validators;
 import org.statement.exception.ValidationFailException;
 import org.statement.models.MT940;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toCollection;
 
 public class UniqueTransactionReferenceValidator implements IStatementRecordValidator {
 
     @Override
     public List<MT940> validate(List<MT940> records) throws ValidationFailException {
-        if(null == records ){
+        if (null == records) {
             throw new ValidationFailException("Empty records");
         }
-        Set<Integer> referenceSet = new HashSet<>();
-        //Second and consecutive duplicate records are added to the list.
-        return records.stream().filter(record -> {
-            return (!referenceSet.add(record.getTransactionRef()));
-        }).collect(Collectors.toList());
+        return records.stream().collect(groupingBy(MT940::getTransactionRef)).values().stream()
+                .filter(refCount -> refCount.size() > 1).flatMap(Collection::stream).collect(Collectors.toList());
     }
 }

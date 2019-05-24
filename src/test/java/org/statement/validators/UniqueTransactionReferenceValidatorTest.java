@@ -55,7 +55,7 @@ public class UniqueTransactionReferenceValidatorTest  {
         } catch (ValidationFailException e) {
             e.printStackTrace();
         }
-        assertEquals(errorRecords.size(), 1);
+        assertEquals(2, errorRecords.size());
     }
 
     @Test
