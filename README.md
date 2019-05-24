@@ -31,20 +31,21 @@ java -DrecordDir=<record_directory> -jar RecordValidatorApp-1.0-SNAPSHOT.jar
 ```
 Failed Records are displayed in the console
 for e.g
-# FileName : records.csv # Number of Failed Records :6
-Transaction Reference :112806 Description : Clothes for Richard Dekker
-Transaction Reference :112806 Description : Subscription for Jan Theuß
-Transaction Reference :195694 Description : Clothes for Daniël Theuß
-Transaction Reference :161574 Description : Subscription for Rik Bakker
-Transaction Reference :112806 Description : Clothes for Richard Dekker
-Transaction Reference :112806 Description : Subscription for Jan Theuß
-----------------------------------------------------------------------
-# FileName : records.xml # Number of Failed Records :3
-Transaction Reference :158536 Description : Candy from Jan Bakker
-Transaction Reference :163678 Description : Candy for Jan de Vries
-Transaction Reference :175867 Description : Clothes from Daniël Theuß
-----------------------------------------------------------------------
-
+12:08:54.112 [main] INFO  o.s.r.ConsoleReport - ----------------------------------------------------------------------
+12:08:54.112 [main] INFO  o.s.r.ConsoleReport - # FileName : records.csv # Number of Failed Records :2
+12:08:54.115 [main] INFO  o.s.r.ConsoleReport - Transaction Reference :112806 Description : Clothes for Richard Dekker
+12:08:54.121 [main] INFO  o.s.r.ConsoleReport - Transaction Reference :112806 Description : Subscription for Jan Theu▀
+12:08:54.122 [main] INFO  o.s.r.ConsoleReport - ----------------------------------------------------------------------
+12:08:54.227 [main] INFO  o.s.r.ConsoleReport - ----------------------------------------------------------------------
+12:08:54.228 [main] INFO  o.s.r.ConsoleReport - # FileName : records.xml # Number of Failed Records :2
+12:08:54.230 [main] INFO  o.s.r.ConsoleReport - Transaction Reference :158536 Description : Candy from Jan Bakker
+12:08:54.237 [main] INFO  o.s.r.ConsoleReport - Transaction Reference :175867 Description : Clothes from DaniÙl Theu▀
+12:08:54.237 [main] INFO  o.s.r.ConsoleReport - ----------------------------------------------------------------------
+12:08:54.256 [main] INFO  o.s.r.ConsoleReport - ----------------------------------------------------------------------
+12:08:54.256 [main] INFO  o.s.r.ConsoleReport - # FileName : records_test_valid.xml # Number of Failed Records :2
+12:08:54.257 [main] INFO  o.s.r.ConsoleReport - Transaction Reference :158536 Description : Candy from Jan Bakker
+12:08:54.264 [main] INFO  o.s.r.ConsoleReport - Transaction Reference :175867 Description : Clothes from DaniÙl Theu▀
+12:08:54.266 [main] INFO  o.s.r.ConsoleReport - ----------------------------------------------------------------------
 ## Deployment
 
 NA

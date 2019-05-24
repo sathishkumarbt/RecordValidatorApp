@@ -1,4 +1,4 @@
-package org.statement.processors;
+package org.statement.formatprocessors;
 
 import org.statement.exception.FileParserException;
 import org.statement.models.MT940;

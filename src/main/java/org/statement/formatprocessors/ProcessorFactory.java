@@ -1,4 +1,4 @@
-package org.statement.processors;
+package org.statement.formatprocessors;
 
 import java.util.HashMap;
 import java.util.function.Supplier;

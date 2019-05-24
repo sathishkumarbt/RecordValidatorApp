@@ -1,4 +1,4 @@
-package org.statement.processors;
+package org.statement.formatprocessors;
 
 import org.junit.jupiter.api.Assertions;
 import org.statement.exception.FileParserException;
